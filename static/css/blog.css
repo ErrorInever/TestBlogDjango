@@ -7,6 +7,27 @@
   background-position:50% 25%;
 }
 
+.card-author-name {
+  color:#da521e;
+}
+.bt-card {
+  color: #da521e;
+  background-color: white;
+  border-color: #da521e;
+  font-size: 14px;
+}
+.bt-card:hover {
+  color: white;
+  background-color: #da521e;
+  border-color: #da521e;
+}
+
+
+
+.post-meta {
+  border-top: 1px solid #e2e2e2;
+}
+
 body {
   padding: 20px;
   background: #f1f1f1;
