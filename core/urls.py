@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from blog import views
+from core import views
 
 urlpatterns = [
-	path('blog/', views.BlogListView.as_view(), name='blog'),
+	path('', views.NewsListView.as_view(), name='home'),
 ]
