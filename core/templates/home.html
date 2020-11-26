@@ -50,11 +50,10 @@
     </nav>
 
     <main>
+      {% block content %}
+
       <div class="container h-100 d-flex justify-content-center">
         <div class="jumbotron my-auto">
-
-            {% block content%}
-
               <div class="card text-center border-dark">
                 <div class="card-body">
                   <h1 class="card-title">Create your blog</h1>
@@ -62,11 +61,10 @@
                   <a href="#" class="btn btn-outline-danger text-uppercase">Create</a>
                 </div>
               </div>
-
-            {% endblock %}
-
           </div>
         </div>
+        
+      {% endblock %}
     </main>
     <!-- Optional JavaScript; choose one of the two! -->
 
