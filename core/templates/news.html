@@ -14,20 +14,21 @@
     <div class="container">
       <div class="jumbotron p-4 p-md-5 bg-dark text-white rounded mt-2">
         <div class="col-md-6 px-0">
-          <h1 class="display-4 font-italic"><u>Title of a longer featured blog post</u></h1>
-          <p class="lead my-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam</p>
+          <h1 class="display-4 font-italic"><a class="text-white" href="#"><u>{{last_news.title}}</u></a></h1>
+          <p class="lead my-3">{{last_news.content|truncatechars:"250"}}</p>
           <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
         </div>
       </div>
 
       <div class="row mb-2">
+        {% for latest_news in latest_two_news %}
         <div class="col-md-6">
           <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static">
               <strong class="d-inline-block mb-2 text-primary">TAG</strong>
-              <h3 class="mb-0 font-weight-bold">Title 1 news</h3>
-              <div class="mb-1 text-muted">Nov 12, 2020</div>
-              <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+              <h3 class="mb-0 font-weight-bold"><a class="title_news" href="#">{{latest_news.title}}</a></h3>
+              <div class="mb-1 text-muted">{{latest_news.created_on|date:'d M, Y'}}</div>
+              <p class="card-text mb-auto">{{latest_news.content|truncatechars:"100"}}</p>
               <a href="#" class="stretched-link">Continue reading</a>
             </div>
             <div class="col-auto d-none d-lg-block">
@@ -35,40 +36,25 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <div class="col p-4 d-flex flex-column position-static">
-              <strong class="d-inline-block mb-2 text-success">TAG</strong>
-              <h3 class="mb-0 font-weight-bold">Title 2 news</h3>
-              <div class="mb-1 text-muted">Nov 12, 2020</div>
-              <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="stretched-link">Continue reading</a>
-            </div>
-            <div class="col-auto d-none d-lg-block">
-              <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
 
 
     <div class="row">
+      {% for news in list_news %}
+      {% comment "0: draft, 1: publish" %}
+      {% endcomment %}
+      {% if news.status == 1 %}
       <div class="col-md-12 blog-main mb-4">
         <div class="blog-post border-top">
-          <h2 class="blog-post-title font-weight-bold">Sample blog post</h2>
-          <p class="blog-post-meta text-muted">January 1, 2014 by <a href="#">Name</a></p>
-          <p>This is a wider card with supporting text below as a natural lead-in to additional content. This is a wider card with   supporting text below as a natural lead-in to additional content. This is a wider card with supporting text below as a   natural lead-in to additional content. This is a wider card with supporting text below as a natural lead-in to additional   content. This is a wider card with supporting text below as a natural lead-in to additional content. This is a wider card   with supporting text below as a natural lead-in to additional content.</p>
+          <h2 class="blog-post-title font-weight-bold"><a class="title_news" href="#">{{news.title}}</a></h2>
+          <p class="blog-post-meta text-muted">{{news.created_on|date:'d M, Y'}} by <a class="text-warning" href="#">Name</a></p>
+          <p>{{news.content|truncatechars:"350"}} <a class="text-uppercase" href="#">read more</a></p>
           </div>
       </div>
-      <div class="col-md-12 blog-main">
-        <div class="blog-post mb-4 border-top">
-          <h2 class="blog-post-title font-weight-bold">Sample blog post</h2>
-          <p class="blog-post-meta text-muted">January 1, 2014 by <a href="#">Name</a></p>
-          <p>This is a wider card with supporting text below as a natural lead-in to additional content. This is a wider card with   supporting text below as a natural lead-in to additional content. This is a wider card with supporting text below as a   natural lead-in to additional content. This is a wider card with supporting text below as a natural lead-in to additional   content. This is a wider card with supporting text below as a natural lead-in to additional content. This is a wider card   with supporting text below as a natural lead-in to additional content.</p>
-          </div>
-      </div>
+      {% endif %}
+      {% endfor %}
     </div>
-
 
 
 
