@@ -44,7 +44,7 @@
       {% for news in list_news %}
       {% comment "0: draft, 1: publish" %}
       {% endcomment %}
-      {% if news.status == 1 %}
+      {% if news.status == 1 and news not in latest_two_news and news != last_news %}
       <div class="col-md-12 blog-main mb-4">
         <div class="blog-post border-top">
           <h2 class="blog-post-title font-weight-bold"><a class="title_news" href="#">{{news.title}}</a></h2>
