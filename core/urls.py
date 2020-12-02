@@ -21,4 +21,5 @@ from django.views.generic import TemplateView
 urlpatterns = [
 	path('', TemplateView.as_view(template_name='home.html'), name='home'),
 	path('news/', views.NewsListView.as_view(), name='news'),
+	path('news/<int:pk>', views.NewsDetailView.as_view(), name='news-detail'),
 ]

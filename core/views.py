@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import News
 from django.views.generic import TemplateView
 
@@ -15,3 +15,8 @@ class NewsListView(ListView):
 		context['latest_two_news'] = last_news[1:3]
 		context['last_news'] = last_news[0]
 		return context
+
+class NewsDetailView(DetailView):
+	model = News
+	template_name = 'news_detail.html'
+	context_object_name = 'news'
