@@ -42,13 +42,14 @@
           </li>
         </ul>
         <ul class="navbar-nav">
+          {% url 'login' as login_url %}
           <li class="nav-item">
-            <a class="nav-link text-uppercase text-warning" href="#">sign in</a>
+            <a class="nav-link text-uppercase text-warning" href="{{login_url}}">sign in</a>
           </li>
         </ul>
       </div>
     </nav>
-
+{{request.user}}
     <main>
       {% block content %}
 

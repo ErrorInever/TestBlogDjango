@@ -1,7 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from .models import News
 from django.views.generic import TemplateView
+from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView
+from .forms import AuthUserForm, RegisterUserForm
+from django.contrib.auth.models import User
 
 
 class NewsListView(ListView):
@@ -20,3 +24,19 @@ class NewsDetailView(DetailView):
 	model = News
 	template_name = 'news_detail.html'
 	context_object_name = 'news'
+
+
+class OpenBlogLoginView(LoginView):
+	template_name = 'login.html'
+	form_class = AuthUserForm
+	success_url = reverse_lazy('home')
+
+
+class OpenBlogRegisterView(CreateView):
+	model = User
+	template = 'register.html'
+	success_rul = reverse_lazy('home')
+	form_class = RegisterUserForm
+	success_msg = 'User create successful'
+
+
