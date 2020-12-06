@@ -10,6 +10,8 @@
   </div>
   <button form="add_form" type="submit" class="btn btn-primary float-right">Login in</button>
 </form> 
+{% url 'register' as register_url %}
+<p><strong>No account?</strong> <a class="text-danger" href="{{register_url}}">Register</a></p>
   </div>
 </div>
 {% endblock %}

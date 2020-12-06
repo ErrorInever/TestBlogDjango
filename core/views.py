@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView
 from .forms import AuthUserForm, RegisterUserForm
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 
 
 class NewsListView(ListView):
@@ -41,8 +42,17 @@ class OpenBlogLogOut(LogoutView):
 class OpenBlogRegisterView(CreateView):
 	model = User
 	template = 'register.html'
-	success_rul = reverse_lazy('home')
+	success_url = reverse_lazy('home')
 	form_class = RegisterUserForm
 	success_msg = 'User create successful'
 
+	def get_success_url(self):
+		return self.success_url
 
+	def form_valid(self, form):
+		form_valid = super().form_valid(form)
+		username = form.cleaned_data["username"]
+		password = form.cleaned_data["password"]
+		aut_user = authenticate(username=username, password=password)
+		login(self.request, aut_user)
+		return form_valid

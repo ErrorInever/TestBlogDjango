@@ -44,16 +44,17 @@
         <ul class="navbar-nav">
           {% url 'login' as login_url %}
           <li class="nav-item">
-            <a class="nav-link text-uppercase text-warning" href="{{login_url}}">sign in</a>
+            <a class="nav-link text-uppercase text-warning" href="{% if request.user.is_authenticated %}#{% else %}{{login_url}}{% endif %}">{% if request.user.is_authenticated %}{{request.user.username}} {% else %} sign in {% endif %}</a>
           </li>
+          {% if request.user.is_authenticated %}
           {% url 'logout' as logout_url %}
           <li class="nav-item">
             <a class="nav-link text-uppercase text-danger" href="{{logout_url}}">log out</a>
           </li>
+          {% endif %}
         </ul>
       </div>
-    </nav>
-{{request.user}}
+    </nav>  
     <main>
       {% block content %}
 
