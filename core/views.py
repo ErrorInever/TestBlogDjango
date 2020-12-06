@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView
 from .models import News
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from .forms import AuthUserForm, RegisterUserForm
 from django.contrib.auth.models import User
 
@@ -30,6 +30,12 @@ class OpenBlogLoginView(LoginView):
 	template_name = 'login.html'
 	form_class = AuthUserForm
 	success_url = reverse_lazy('home')
+
+	def get_success_url(self):
+		return self.success_url
+
+class OpenBlogLogOut(LogoutView):
+	next_page = reverse_lazy('home')
 
 
 class OpenBlogRegisterView(CreateView):

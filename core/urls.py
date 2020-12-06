@@ -24,4 +24,5 @@ urlpatterns = [
 	path('news/<int:pk>', views.NewsDetailView.as_view(), name='news-detail'),
     path('login', views.OpenBlogLoginView.as_view(), name='login'),
     path('register', views.OpenBlogRegisterView.as_view(template_name='register.html'), name='register'),
+    path('logout', views.OpenBlogLogOut.as_view(), name='logout')
 ]
