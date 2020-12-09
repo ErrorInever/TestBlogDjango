@@ -18,5 +18,5 @@ from django.urls import path, include
 from blog import views
 
 urlpatterns = [
-	path('blog/', views.BlogListView.as_view(), name='blog'),
+	path('blog/', views.PostListView.as_view(), name='blog'),
 ]
