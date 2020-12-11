@@ -60,9 +60,18 @@
         <div class="jumbotron my-auto">
               <div class="card text-center border-dark">
                 <div class="card-body">
+                  <h1 class="card-title">My blogs</h1>
+                  {% if user_blog_list %}
+                  <ul class="list-group">
+                    {% for blog in user_blog_list %}
+                    <li class="list-group-item list-group-item-info"><a href="#">{{blog.blog_title}}</a></li>
+                    {% endfor %}
+                  </ul>
+                  {% else %}
                   <h1 class="card-title">Create your blog</h1>
                   <p class="card-text">Create your personal blog</p>
                   <a href="#" class="btn btn-outline-danger text-uppercase">Create</a>
+                  {% endif %}
                 </div>
               </div>
           </div>

@@ -7,7 +7,25 @@ from django.contrib.auth.views import LoginView, LogoutView
 from .forms import AuthUserForm, RegisterUserForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from blog.models import Blog
 
+
+class BlogListView(ListView):
+	model = Blog
+	template_name = 'home.html'
+	context_object_name = 'blog_list'
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		username = self.request.user
+		try:
+			user_blog_list = Blog.objects.filter(author=username)
+			if user_blog_list:
+				context['user_blog_list'] = user_blog_list
+		except TypeError:
+			return context
+		return context
+			
 
 class NewsListView(ListView):
 	model = News
