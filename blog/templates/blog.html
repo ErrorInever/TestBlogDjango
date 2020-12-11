@@ -11,7 +11,7 @@
     <link href="{% static 'css/blog.css' %}?{% now "U" %}" rel="stylesheet">
 
 
-    <title>Blog name</title>
+    <title>{{blog.blog_title}}</title>
   </head>
   <body class="mx-auto" style="width: 1200px;">
   	<!--            HEADER             -->
@@ -23,8 +23,10 @@
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
-	  <a class="navbar-brand" href="#">Home</a>
-
+      {% url 'blog' blog.id as blog_url %}
+	  <a class="navbar-brand" href="{{blog_url}}">Home</a>
+      {% url 'create_post' as create_post_url %}
+      <a class="navbar-brand text-info" href="{{create_post_url}}">Create post</a>
 	   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Profile
         </a>
@@ -37,6 +39,7 @@
 
     <div class="row mt-4 ml-1 mr-1">
     <!--            LEFT COLUMN             -->
+    {% block content %}
     <div class="leftcolumn">
 
 		<div class="card mb-2">
@@ -73,7 +76,7 @@
     		</div>
     		<div class="card-body">
     		    <img class="card-img-top" style="width: 10rem;" src="{% static 'images/temp.png' %}" alt="Card imagecap">
-    			<p class="card-text mt-4">My Personal info</p>
+    			<p class="card-text mt-4">My name is {{blog.author}}</p>
     		</div>
     	</div>
     	<h3>Most popular posts</h3>
@@ -106,6 +109,7 @@
 
 	</div>
 	
+    {% endblock %}
 	</div>
 	<!--            FOOTER              -->
 	<div class="footer ml-1 mr-1">
