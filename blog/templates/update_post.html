@@ -1,0 +1,15 @@
+{% extends 'blog.html' %}
+
+{% block content %}
+{% if update %}
+<p>Страница редактирования</p>
+<div>
+  <form id="update_data" method="post">
+    {% csrf_token %}
+    {{form}}
+  </form>
+  <button form="update_data" type="submit" class="btn btn-primary">Обновить</button>
+</div>
+{% endif %}
+
+{% endblock %}

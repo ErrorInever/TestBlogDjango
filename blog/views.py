@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import DetailView, CreateView, ListView
+from django.views.generic import DetailView, CreateView, ListView, UpdateView
 from .models import Post, Blog
 from .forms import CreatePost
 from django.urls import reverse_lazy, reverse
@@ -38,3 +38,20 @@ class PostDetailView(DetailView):
 	model = Post
 	template_name = 'post_detail.html'
 	context_object_name = 'post_detail'
+
+
+class UpdatePostView(UpdateView):
+	model = Post
+	template_name = 'update_post.html'
+	form_class = CreatePost
+
+	def get_success_url(self):
+		return reverse('blog', kwargs={'pk': self.kwargs['blog_id']})
+
+	def get_context_data(self, **kwargs):
+		kwargs['update'] = True
+		return super().get_context_data(**kwargs)
+
+	def get_form_kwargs(self):
+		kwargs = super().get_form_kwargs()
+		return kwargs

@@ -32,6 +32,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#">my profile</a>
           <a class="dropdown-item" href="#">settings</a>
+
         </div>	
 	</nav>
 
@@ -44,7 +45,8 @@
 
             {% for post in posts_list %}
     		<div class="card-header mt-4">
-    			{{post.title}}
+    			<h3>{{post.title}}</h3>
+                <p class="float-right"><a href="{{blog.get_absolute_url}}/update/{{post.id}}" class="text-info">Update post</a></p>
     		</div>
     		<div class="card-body ml-4 mr-4">
     			<h5 class="card-title">{{post.tagline}}</h5>
