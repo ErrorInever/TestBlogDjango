@@ -23,9 +23,8 @@
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
-      {% url 'blog' blog.id as blog_url %}
-	  <a class="navbar-brand" href="{{blog_url}}">Home</a>
-      {% url 'create_post' as create_post_url %}
+	  <a class="navbar-brand" href="{{blog.get_absolute_url}}">Home</a>
+      {% url 'create_post' blog_id=blog.id as create_post_url %}
       <a class="navbar-brand text-info" href="{{create_post_url}}">Create post</a>
 	   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Profile

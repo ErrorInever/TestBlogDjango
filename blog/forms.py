@@ -6,7 +6,7 @@ class CreatePost(forms.ModelForm):
 	class Meta:
 		model = Post
 		fields = ('title', 'tagline' , 'content' , 'status')
-		# fields = "__all__"
+		#fields = "__all__"
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
