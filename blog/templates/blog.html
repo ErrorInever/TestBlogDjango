@@ -51,7 +51,7 @@
     	    	<img class="card-img-top" style="width: 10rem;" src="{% static 'images/temp.png' %}" alt="Carimage cap">
                 <p class="card-text">{{post.content}}</p>
             <div class="text-center">
-                <button type="button" class="bt-card btn btn-outline-primary text-uppercase font-weight-bold">Continue reading</button>
+                <button type="button" class="bt-card btn btn-outline-primary text-uppercase font-weight-bold"><a href="{{blog.get_absolute_url}}/post/{{post.id}}">Continue reading</a></button>
             </div>
     		</div>
             <div class="post-meta ml-4 mr-4">

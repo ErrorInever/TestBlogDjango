@@ -6,12 +6,6 @@ from django.urls import reverse_lazy, reverse
 from django.shortcuts import get_object_or_404
 
 
-# class BlogDetailView(DetailView):
-# 	model = Blog
-# 	template_name = 'blog.html'
-# 	context_object_name = 'blog'
-
-
 class CreatePost(CreateView):
 	model = Post
 	template_name = 'create_post.html'
@@ -38,3 +32,9 @@ class PostListView(ListView):
 		context = super().get_context_data(**kwargs)
 		context['blog'] = Blog.objects.get(pk=self.kwargs['pk'])
 		return context
+
+
+class PostDetailView(DetailView):
+	model = Post
+	template_name = 'post_detail.html'
+	context_object_name = 'post_detail'
