@@ -1,15 +1,15 @@
 from django.shortcuts import render
-from django.views.generic import DetailView, CreateView
+from django.views.generic import DetailView, CreateView, ListView
 from .models import Post, Blog
 from .forms import CreatePost
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import get_object_or_404
 
 
-class BlogDetailView(DetailView):
-	model = Blog
-	template_name = 'blog.html'
-	context_object_name = 'blog'
+# class BlogDetailView(DetailView):
+# 	model = Blog
+# 	template_name = 'blog.html'
+# 	context_object_name = 'blog'
 
 
 class CreatePost(CreateView):
@@ -27,3 +27,14 @@ class CreatePost(CreateView):
 		self.object.blog = get_object_or_404(Blog, id=blog_id)
 		self.object.save()
 		return super().form_valid(form)
+
+
+class PostListView(ListView):
+	model = Post
+	template_name = 'blog.html'
+	context_object_name = 'posts_list'
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['blog'] = Blog.objects.get(pk=self.kwargs['pk'])
+		return context

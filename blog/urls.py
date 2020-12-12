@@ -18,6 +18,6 @@ from django.urls import path, include
 from blog import views
 
 urlpatterns = [
-	path('blog/<int:pk>', views.BlogDetailView.as_view(), name="blog"),
+	path('blog/<int:pk>', views.PostListView.as_view(), name="blog"),
 	path('blog/<int:blog_id>/create_post/', views.CreatePost.as_view(), name='create_post')
 ]

@@ -40,29 +40,28 @@
     <!--            LEFT COLUMN             -->
     {% block content %}
     <div class="leftcolumn">
-
 		<div class="card mb-2">
-    		<div class="card-header">
-    			CARD TEXT
+
+            {% for post in posts_list %}
+    		<div class="card-header mt-4">
+    			{{post.title}}
     		</div>
     		<div class="card-body ml-4 mr-4">
-    			<h5 class="card-title">Special title treatment</h5>
+    			<h5 class="card-title">{{post.tagline}}</h5>
     	    	<img class="card-img-top" style="width: 10rem;" src="{% static 'images/temp.png' %}" alt="Carimage cap">
-    			<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu
-                </p>
+                <p class="card-text">{{post.content}}</p>
             <div class="text-center">
                 <button type="button" class="bt-card btn btn-outline-primary text-uppercase font-weight-bold">Continue reading</button>
             </div>
-
     		</div>
             <div class="post-meta ml-4 mr-4">
                 <p class="font-italic text-secondary mt-2">
                     <span>By</span>
-                    <span><a class="card-author-name" href="#">Name</a></span>
-                    <span>on November 12,2020</span>
+                    <span><a class="card-author-name" href="#">{{blog.author}}</a></span>
+                    <span>on {{post.created_on}}</span>
                 </p>
             </div>
+            {% endfor %}
 
         </div>
     </div>
