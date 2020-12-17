@@ -30,8 +30,13 @@ class PostListView(ListView):
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
+		current_blog = Blog.objects.get(pk=self.kwargs['pk'])
 		context['blog'] = Blog.objects.get(pk=self.kwargs['pk'])
 		return context
+
+	def get_queryset(self, **kwargs):
+		return Post.objects.filter(blog__id=self.kwargs['pk'])
+
 
 
 class PostDetailView(DetailView):
